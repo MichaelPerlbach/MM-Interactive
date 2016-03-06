@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2014-04-20T19:42:09Z" product-name="mminteractive">
+		<header/>
+		<body>
+			<trans-unit id="tx_mminteractive.step1">
+				<source>1. file-upload</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

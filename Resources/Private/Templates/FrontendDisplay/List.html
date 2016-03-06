@@ -1,0 +1,412 @@
+{namespace k=MikelMade\Mminteractive\ViewHelpers}
+<f:layout name="none" />
+
+<f:section name="content">
+<div id="ordernav" style="height:40px;">
+	<div id="ordernavwrap">
+		<div id="ordertab1" class="ot firstordertab ordertab_active"><f:translate key="tx_mminteractive.step1" /></div>
+		<div id="ordertab2" class="ot ordertab"><f:translate key="tx_mminteractive.step2" /></div>
+		<div id="ordertab3" class="ot ordertab"><f:translate key="tx_mminteractive.step3" /></div>
+		<div id="ordertab4" class="ot lastordertab"><f:translate key="tx_mminteractive.step4" /></div>
+	</div>
+</div>
+<div id="orderwrap" style="margin-left:10px;">
+	
+	<!-- ORDER STEP 1 -->
+	<div id="order1" class="order" style="display:block;">
+	<div style="margin-top:25px;font-size:15px;color:#0d3267;font-weight:bold;"><f:translate key="tx_mminteractive.step1" /></div>		 
+	<div id="dropzone"><img src="fileadmin/template/images/dragdrop.png" style="margin-top:25px;width:95px;" />
+		<div style="color:#717171;font-size:13px;font-weight:bold;margin-top:13px;"><f:translate key="tx_mminteractive.dragfiles" /></div>
+	</div>
+					 
+	<div id="fileupload"><f:translate key="tx_mminteractive.useclassic" /></div>
+		<div id="uploadformwrapper">
+			<div style="display: inline-block;">
+				<div id="ulbutton"><f:translate key="tx_mminteractive.selectfile" /></div>
+				<div id="ulfield"></div>
+				<div id="ultrigger"><f:translate key="tx_mminteractive.upload" /></div>
+			</div>
+		</div>
+					
+		<div id="uploadedfiles"></div>
+		<div id="completedfiles"></div>
+					
+		<div id="disclaimer">
+			<div id="weiter1" class="weiter" style="margin-top:50px;"><f:translate key="tx_mminteractive.next" /></div>
+		</div>
+		<script type="text/javascript">
+			var _extdata = '{settings.uploadtypes}';
+			_extensions = _extdata.split(',');
+			var _shapedata = '{settings.shapes}';
+			var _delete = '<f:translate key="tx_mminteractive.delete" />';
+			var _cancel = '<f:translate key="tx_mminteractive.cancel" />';
+			var _thefile = '<f:translate key="tx_mminteractive.thefile" />';
+			var _notfound = '<f:translate key="tx_mminteractive.notfound" />';
+			var _fileremoved = '<f:translate key="tx_mminteractive.fileremoved" />';
+			var _product = '<f:translate key="tx_mminteractive.product" />';
+			var _selectproduct = '<f:translate key="tx_mminteractive.selectproduct" />';
+			var _selectmaterial = '<f:translate key="tx_mminteractive.selectmaterial" />';
+			var _selectmaterialdesc = '<f:translate key="tx_mminteractive.selectmaterialdesc" />';
+			var _selectcompletion = '<f:translate key="tx_mminteractive.selectcompletion" />';
+			var _selectcolor = '<f:translate key="tx_mminteractive.selectcolor" />';
+			var _completion = '<f:translate key="tx_mminteractive.completion" />';
+			var _material = '<f:translate key="tx_mminteractive.material" />';
+			var _materialdesc = '<f:translate key="tx_mminteractive.materialdesc" />';
+			var _choose = '<f:translate key="tx_mminteractive.choose" />';
+			var _allteeth = '<f:translate key="tx_mminteractive.allteeth" />';
+			var _noshapes = '<f:translate key="tx_mminteractive.noshapes" />';
+			var _exterror = '<f:translate key="tx_mminteractive.exterror" />';
+			var _deliveryaddress = '<f:translate key="tx_mminteractive.deliveryaddress" />';
+			var _addoptions = '<f:translate key="tx_mminteractive.addoptions" />';
+			var _ordercode = '<f:translate key="tx_mminteractive.ordercode" />';
+			var _comments = '<f:translate key="tx_mminteractive.comments" />';
+			
+		</script>
+	</div>
+					
+	<div id="order2" class="order" style="margin-left:-10px;">
+		<div id="prodauswahlheader"><f:translate key="tx_mminteractive.step2" /></div>
+		<div id="ordercontent" style="display:inline;">
+			
+		</div>
+		<div class="grid_12 buttonleiste">
+			<!-- <div id="zurueck2" class="zurueck" style="margin-top:50px;"><f:translate key="tx_mminteractive.back" /></div> -->
+			<div id="weiter2" class="weiter2_inactive" style="margin-top:50px;"><f:translate key="tx_mminteractive.next" /></div>
+		</div>
+
+	</div>
+	<div id="order3" class="order" style="margin-left:-10px;">
+		<div style="margin-top:25px;font-size:15px;color:#0d3267;font-weight:bold;"><f:translate key="tx_mminteractive.step3" /></div>
+		<div id="c9999" class="csc-default">
+		<div class="tx-jfmulticontent-pi1">
+			<div id="jfmulticontent_c9999" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
+				
+			</div>
+		</div>
+		<div style="display:inline;">
+			<div id="info_BG" class="grid_12">
+				<div id="Adress_hl" class="grid_4">
+					<h1><f:translate key="tx_mminteractive.deliveryaddress" /></h1>
+					<p class="pseudolink" id="chaddress"><f:translate key="tx_mminteractive.changedeliveryaddress" /></p>
+				</div>
+				<div id="Adress_anzeige" class="grid_8">
+					<div id="adress_BG" class="grid_12"></div>
+				</div>
+			</div>
+		</div>
+		<div style="display:inline;">
+			<div id="info_BG" class="grid_12">
+				<div id="Auftrag_hl" class="grid_12">
+					<h1><f:translate key="tx_mminteractive.orderdetails" /></h1>
+					<div id="Auftragsangaben" class="grid_4">
+						<f:translate key="tx_mminteractive.fileuploaded" />:<br />
+						<!-- Produktnr.:<br />
+						Produkt-ID:<br /> -->
+					</div>
+					<div id="Auftragsangaben2" class="grid_4">
+						<span id="ordernumber" style="display:none;"></span>
+						<span id="orderdate"></span><br />
+						<span id="productnumber"></span><br />
+						<span id="productid"></span><br />
+					</div>
+					<div id="Infotext" class="grid_4"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div style="display:inline;">
+			<div id="info_BG" class="grid_12">
+				<div id="Options_hl" class="grid_12">
+					<h1><f:translate key="tx_mminteractive.addoptions" /></h1>
+					<div>
+						<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+							<div class="sb_titel" style="width:600px;"><f:translate key="tx_mminteractive.ordercode" /></div>
+							<div class="sb">
+							<input type="text" id="d_ordercode" class="ausgabefeld d_ordercode" style="width:700px;" maxlength="255" />
+							</div>
+						</div>
+					</div>
+					<div style="clear:both;">
+						<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+							<div class="sb_titel" style="width:600px;"><f:translate key="tx_mminteractive.comments" /></div>
+							<div class="sb">
+								<input type="text" id="d_comments" class="ausgabefeld d_comments" style="width:700px;" maxlength="255" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="buttonleiste" class="grid_12"> 
+			<!-- <div id="zurueck" class="zurueck" style="margin-top:50px;">Eingaben ändern</div> -->
+			<div id="weiter3" class="weiter3" style="margin-top:50px;"><f:translate key="tx_mminteractive.confirmorder" /></div>
+		</div> 
+	
+		<div id="setAddress" class="setAddress">
+			<div id="Adress_hl" class="grid_4">
+				<h1><f:translate key="tx_mminteractive.deliveryaddress" /></h1>
+				<div class="pseudolink" id="cancel"><f:translate key="tx_mminteractive.cancel" /></div>
+			</div>
+			<div id="setfields">
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.companyname" /></div>
+				<div class="sb">
+					<div id="name1" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.name2" /></div>
+				<div class="sb">
+					<div id="name2" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.name3" /></div>
+				<div class="sb">
+					<div id="name3" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.street" /></div>
+				<div class="sb">
+					<div id="street" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.housenumber" /></div>
+				<div class="sb">
+					<div id="housenumber" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.streetsuffix" /></div>
+				<div class="sb">
+					<div id="streetsuffix" class="ausgabefeld d_address" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.zip" /></div>
+				<div class="sb">
+					<div id="zip" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.city" /></div>
+				<div class="sb">
+					<div id="city" class="ausgabefeld d_address redborder" contenteditable="true"></div>
+				</div>
+			</div>
+			
+			<div class="elmwrap sbut sel" style="display: block;margin-bottom:0px;">
+				<div class="sb_titel"><f:translate key="tx_mminteractive.country" /></div>
+				<div class="sb">
+					<div id="country" class="ausgabefeld d_address">Deutschland</div>
+				</div>
+			</div>
+			<div id="buttonsetfields" class="buttonsetfields_inactive"><f:translate key="tx_mminteractive.setaddress" /></div>
+		</div>
+	
+	</div>
+
+	<div id="ordertemplate" style="display:none;">
+		<div id="orderdatawrap_#ID#" class="orderdatawrap">
+		<div id="prod_#ID#" style="display:none;" value=""></div>
+		<div id="implant_#ID#" style="display:none;" value=""></div>
+		<div class="grid_12 dateiname">
+			<div class="dateinummer">#NUM#.</div>
+			<div id="file_#ID#" class="dateidetails"><span class="filedata">#PIC#</span></div>
+		</div>
+		<div id="orderitemswrap_#ID#" class="orderitemswrap">
+		<div id="producttype_#ID#" class="elmwrap sbut sel">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.product" /></div>
+			<div class="sb" id="w_producttype_#ID#">
+				<label><select id="c_producttype_#ID#" class="producttype_select sel redborder">#PTYPE#</select></label>
+			</div>
+		</div>
+		<div id="completion_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.completion" /></div>
+			<div class="sb" id="w_completion_#ID#">
+				<label><select id="c_completion_#ID#" class="completion_select sel"></select></label>
+			</div>
+		</div>
+		<div id="material_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.material" /></div>
+			<div class="sb" id="w_material_#ID#">
+				<label><select id="c_material_#ID#" class="material_select sel"></select></label>
+			</div>
+		</div>
+		<div id="materialdesc_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.materialdesc" /></div>
+			<div class="sb" id="w_materialdesc_#ID#">
+				<label><select id="c_materialdesc_#ID#" class="materialdesc_select sel"></select></label>
+			</div>
+		</div>
+		<div id="color_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.color" /></div>
+			<div class="sb" id="w_color_#ID#">
+				<label><select id="c_color_#ID#" class="color_select sel"></select></label>
+			</div>
+		</div>
+		<div id="productiondepth_#ID#" class="elmwrap output sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.productiondepth" /></div>
+			<div class="sb" id="w_productiondepth_#ID#">
+				<div id="c_productiondepth_#ID#" data-productiondepthid="" class="ausgabefeld productiondepth_input sel"></div>
+			</div>
+		</div>
+		<div id="addwork_#ID#" class="elmwrap sbut sel" style="display:none;"> 
+			<div class="sb_titel"><f:translate key="tx_mminteractive.addwork" /></div>
+				<div id="adw1#ID#wrap" data-addworkid="">
+					<input id="adw1#ID#" type="checkbox" value="" name="adw1#ID#" />
+					<label id="adw1label#ID#" for="adw1#ID#">-</label>
+				</div>
+				<div id="adw2#ID#wrap" data-addworkid="">
+					<input id="adw2#ID#" type="checkbox" value="" name="adw2#ID#" />
+					<label id="adw2label#ID#" for="adw2#ID#">-</label>
+				</div>
+			<div></div>
+		</div>
+		<div id="addworkfield1_#ID#" class="elmwrap sbut sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.addwork" /></div>
+			<div class="sb" id="w_addworkfield1_#ID#">
+				<div id="c_addworkfield1_#ID#" data-addworkid="" class="ausgabefeld addworkfield1_input sel"></div>
+			</div>
+		</div>
+		<div id="addworkfield2_#ID#" class="elmwrap output sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.addwork" /></div>
+			<div class="sb" id="w_addworkfield2_#ID#">
+				<div id="c_addworkfield2_#ID#" data-addworkid="" class="ausgabefeld addworkfield2_input sel"></div>
+			</div>
+		</div>
+		
+		<div id="teethfrom_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.teeth" /></div>
+			<div class="sb" id="w_teethfrom_#ID#">
+				<label><select id="c_teethfrom_#ID#" class="teethfrom_select sel">
+					<option value="0"><f:translate key="tx_mminteractive.choose" /></option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+				</select></label>
+			</div>
+		</div>
+		
+		<div id="countable1_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel" id="countabletitle1_#ID#"></div>
+			<div class="sb" id="w_countable1_#ID#">
+				<label><select id="c_countable1_#ID#" class="countable1_select sel">
+					<option value="0"><f:translate key="tx_mminteractive.choose" /></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select></label>
+			</div>
+		</div>
+		
+		<div id="countable2_#ID#" class="elmwrap sbut sel" style="display:none">
+			<div class="sb_titel" id="countabletitle2_#ID#"></div>
+			<div class="sb" id="w_countable2_#ID#">
+				<label><select id="c_countable2_#ID#" class="countable2_select sel">
+					<option value="0"><f:translate key="tx_mminteractive.choose" /></option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+				</select></label>
+			</div>
+		</div>		
+		
+		<div id="implantsupplier_#ID#" class="elmwrap sbut sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.supplier" /></div>
+			<div class="sb" id="w_implantsupplier_#ID#">
+				<label><select id="c_implantsupplier_#ID#" class="implantsupplier_select sel">
+				<option value="0"><f:translate key="tx_mminteractive.choose" /></option>
+				<f:for each="{implantsupplier}" as="sup"><option value="{sup.uid}">{sup.supplier}</option></f:for>
+				</select></label>
+			</div>
+		</div>
+		
+		<div id="implantsystem_#ID#" class="elmwrap sbut sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.system" /></div>
+			<div class="sb" id="w_implantsystem_#ID#">
+				<label><select id="c_implantsystem_#ID#" class="implantsystem_select sel"></select></label>
+			</div>
+		</div>
+		
+		<div id="implantsize_#ID#" class="elmwrap sbut sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.mm" /></div>
+			<div class="sb" id="w_implantsize_#ID#">
+				<label><select id="c_implantsize_#ID#" class="implantsize_select sel"></select></label>
+			</div>
+		</div>
+
+		<div id="implantgingiva_#ID#" class="elmwrap sbut sel" style="display:none;">
+			<div class="sb_titel"><f:translate key="tx_mminteractive.gingiva" /></div>
+			<div class="sb" id="w_implantgingiva_#ID#">
+				<label><select id="c_implantgingiva_#ID#" class="implantgingiva_select sel">
+				<option value="0"><f:translate key="tx_mminteractive.choose" /></option></select></label>
+			</div>
+		</div>
+		</div>
+	</div>
+	</div>
+	
+
+	
+	
+	</div>
+</div>
+<div id="order4" class="order" style="margin-left:-10px;">
+		<div style="margin-top:25px;font-size:15px;color:#0d3267;font-weight:bold;"><f:translate key="tx_mminteractive.step4" /></div>
+		<div style="margin-top:50px;margin-bottom:50px;">{settings.confirmtext}</div>
+		<div style="margin-top:25px;font-size:15px;color:#0d3267;font-weight:bold;margin-bottom:25px;"><f:translate key="tx_mminteractive.orderdetails" />:</div>
+		
+		<div class="tx-jfmulticontent-pi1">
+		<div id="orderparts" class="ui-accordion ui-widget ui-helper-reset" role="tablist"></div>
+		</div>
+		<div id="buttonleiste" class="grid_12">
+			<!-- <div id="zurueck" class="zurueck" style="margin-top:50px;">Auftragsübersicht</div> -->
+			<!-- <div id="download" class="download" style="margin-top:50px;"><f:translate key="tx_mminteractive.downloadconfirm" /></div> -->
+			<div id="weiter4" class="weiter4" style="margin-top:50px;"><f:translate key="tx_mminteractive.neworder" /></div>
+		</div>
+	</div>
+	
+	<div id="modalcover"></div>
+	<div id="modalcover2"></div>
+	<div id="modalspinnerwrapper">
+		<div id="modalspinner"></div>
+		<div id="modaltext"></div>
+	</div>
+</div>
+</f:section>
