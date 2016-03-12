@@ -90,3 +90,7 @@ CREATE TABLE tx_mminteractive_domain_model_mapcache (
 	lastchanged timestamp NOT NULL default CURRENT_TIMESTAMP,
   PRIMARY KEY (uid)
 );
+
+CREATE TABLE sys_file_reference (
+  mminteractive int(11) NOT NULL default '0',
+);
