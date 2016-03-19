@@ -10,10 +10,15 @@ namespace MikelMade\Mminteractive\Form\Element;
 
 
 use TYPO3\CMS\Backend\Form\Element\AbstractFormElement;
+use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Extbase\Utility\ArrayUtility;
 
+/**
+ * Class MminteractiveElement
+ * @package MikelMade\Mminteractive\Form\Element
+ */
 class MminteractiveElement extends AbstractFormElement
 {
 
@@ -94,27 +99,37 @@ class MminteractiveElement extends AbstractFormElement
     private function getButton($file, $config)
     {
         $languageService = $this->getLanguageService();
-        $buttonAttributes = array(
-            'data-url' => "urltobemodul",
-            'data-severity' => 'notice',
-            'data-image-name' => $file->getNameWithoutExtension(),
-            'data-image-uid' => $file->getUid(),
-            'data-file-field' => $config['file_field'],
-            'data-field' => $formFieldId,
-        );
 
-        $button = '<button class="btn btn-default t3js-image-manipulation-trigger"';
-        foreach ($buttonAttributes as $key => $value) {
-            $button .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
-        }
-        $button .= '><span class="t3-icon fa fa-picture-o"></span>';
+        /** @var UriBuilder $routingUriBuilder */
+        $routingUriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Backend\Routing\UriBuilder');
+        $backendLink = $routingUriBuilder->buildUriFromModule('mminteractive_MminteractiveMod1', array());
+//        $buttonAttributes = array(
+//            'data-url' => $backendLink,
+//            'data-severity' => 'notice',
+//            'data-image-name' => $file->getNameWithoutExtension(),
+//            'data-image-uid' => $file->getUid(),
+//            'data-file-field' => $config['file_field'],
+//            'data-field' => $formFieldId,
+//        );
+
+        $button = '<button class="btn btn-default">';
+//        foreach ($buttonAttributes as $key => $value) {
+//            $button .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
+//        }
+        $button .= /** @lang HTML */
+            '<a href="'.$backendLink.'" >';
+        $button .= '<span class="t3-icon fa fa-picture-o"></span>';
         $button .= $languageService->sL('LLL:EXT:mminteractive/Resources/Private/Language/locallang.xlf:tx_mminteractive_mminteractive_element.buttontext',
             true);
+        $button .= '</a>';
         $button .= '</button>';
 
         return $button;
     }
 
+    /**
+     * @return string
+     */
     private function getInfoTable()
     {
         $content = '<div class="table-fit-block table-spacer-wrap"></div>';

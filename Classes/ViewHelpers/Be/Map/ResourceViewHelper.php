@@ -1,5 +1,5 @@
 <?php
-namespace MikelMade\ViewHelpers\Be\Map;
+namespace MikelMade\Mminteractive\ViewHelpers\Be\Map;
 
 /**
  * Loads css and javascript files in the backend.
