@@ -23,8 +23,9 @@ class MminteractiveElement extends AbstractFormElement
      * @var array
      */
     protected $defaultConfig = array(
-      'file_field' => 'uid_local'
+        'file_field' => 'uid_local'
     );
+
     /**
      * This will render an imageManipulation field
      *
@@ -37,7 +38,8 @@ class MminteractiveElement extends AbstractFormElement
 
         $row = $this->data['databaseRow'];
         $parameterArray = $this->data['parameterArray'];
-        $config = ArrayUtility::arrayMergeRecursiveOverrule($this->defaultConfig, $parameterArray['fieldConf']['config']);
+        $config = ArrayUtility::arrayMergeRecursiveOverrule($this->defaultConfig,
+            $parameterArray['fieldConf']['config']);
 
         $file = $this->getFile($row, $config['file_field']);
         if (!$file) {
@@ -46,7 +48,7 @@ class MminteractiveElement extends AbstractFormElement
 
         $content = '';
         $content .= '<div class="media">';
-        $content .= $this->getButton($file,$config);
+        $content .= $this->getButton($file, $config);
         $content .= $this->getInfoTable();
 
         $content .= '</div>';
@@ -85,17 +87,20 @@ class MminteractiveElement extends AbstractFormElement
     }
 
     /**
-     *@return string
+     * @param \TYPO3\CMS\Core\Resource\File $file
+     * @param array $config
+     * @return string
      */
-    private function getButton($file, $config){
+    private function getButton($file, $config)
+    {
         $languageService = $this->getLanguageService();
         $buttonAttributes = array(
-          'data-url' => "urltobemodul",
-          'data-severity' => 'notice',
-          'data-image-name' => $file->getNameWithoutExtension(),
-          'data-image-uid' => $file->getUid(),
-          'data-file-field' => $config['file_field'],
-          'data-field' => $formFieldId,
+            'data-url' => "urltobemodul",
+            'data-severity' => 'notice',
+            'data-image-name' => $file->getNameWithoutExtension(),
+            'data-image-uid' => $file->getUid(),
+            'data-file-field' => $config['file_field'],
+            'data-field' => $formFieldId,
         );
 
         $button = '<button class="btn btn-default t3js-image-manipulation-trigger"';
@@ -103,13 +108,15 @@ class MminteractiveElement extends AbstractFormElement
             $button .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
         }
         $button .= '><span class="t3-icon fa fa-picture-o"></span>';
-        $button .= $languageService->sL('LLL:EXT:mminteractive/Resources/Private/Language/locallang.xlf:tx_mminteractive_mminteractive_element.buttontext', true);
+        $button .= $languageService->sL('LLL:EXT:mminteractive/Resources/Private/Language/locallang.xlf:tx_mminteractive_mminteractive_element.buttontext',
+            true);
         $button .= '</button>';
 
         return $button;
     }
 
-    private function getInfoTable(){
+    private function getInfoTable()
+    {
         $content = '<div class="table-fit-block table-spacer-wrap"></div>';
         $content .= "<p>TODO</p>";
         return $content;

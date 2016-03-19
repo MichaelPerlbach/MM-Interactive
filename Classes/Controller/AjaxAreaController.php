@@ -1,61 +1,63 @@
 <?php
 
 /***************************************************************
- *	Copyright notice
+ *    Copyright notice
  *
- *	(c) 2016 MikelMade (www.mikelmade.de)
- *	All rights reserved
+ *    (c) 2016 MikelMade (www.mikelmade.de)
+ *    All rights reserved
  *
- *	This script is part of the TYPO3 project. The TYPO3 project is
- *	free software; you can redistribute it and/or modify
- *	it under the terms of the GNU General Public License as published by
- *	the Free Software Foundation; either version 3 of the License, or
- *	(at your option) any later version.
+ *    This script is part of the TYPO3 project. The TYPO3 project is
+ *    free software; you can redistribute it and/or modify
+ *    it under the terms of the GNU General Public License as published by
+ *    the Free Software Foundation; either version 3 of the License, or
+ *    (at your option) any later version.
  *
- *	The GNU General Public License can be found at
- *	http://www.gnu.org/copyleft/gpl.html.
+ *    The GNU General Public License can be found at
+ *    http://www.gnu.org/copyleft/gpl.html.
  *
- *	This script is distributed in the hope that it will be useful,
- *	but WITHOUT ANY WARRANTY; without even the implied warranty of
- *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	See the
- *	GNU General Public License for more details.
+ *    This script is distributed in the hope that it will be useful,
+ *    but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the
+ *    GNU General Public License for more details.
  *
- *	This copyright notice MUST APPEAR in all copies of the script!
+ *    This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
 /**
  *
-	*
-	*	@package	mminteractive
-	*	@license	http://www.gnu.org/licenses/gpl.html	GNU	General	Public	License,	version	3	or	later
-	*
-	*/
-class	Tx_mminteractive_Controller_AjaxAreaController	extends	\TYPO3\CMS\Extbase\Mvc\Controller\ActionController	{
-	
-	/**
-		*	areaRepository
-		*
-		*	@var	\MikelMade\Mminteractive\Domain\Repository\AreaRepository
-		*	@inject
-		*/
-	//protected	$areaRepository;
+ *
+ * @package    mminteractive
+ * @license    http://www.gnu.org/licenses/gpl.html	GNU	General	Public	License,	version	3	or	later
+ *
+ */
+class    Tx_mminteractive_Controller_AjaxAreaController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+{
 
-	
+    /**
+     *    areaRepository
+     *
+     * @var    \MikelMade\Mminteractive\Domain\Repository\AreaRepository
+     * @inject
+     */
+    //protected	$areaRepository;
 
-	public function initializeSettings() {
-		/*
-		if(!empty($this->settings['flexform'])) {
-			foreach ($this->settings['flexform'] as $key => $value) {
-				if (isset($this->settings[$key]) && $value != '') {
-					$this->settings[$key] = $value;
-				}
- 			}
- 		}
-		*/
-	}
-		
-	//public function initializeAction() { $this->initializeSettings(); }
+
+    public function initializeSettings()
+    {
+        /*
+        if(!empty($this->settings['flexform'])) {
+            foreach ($this->settings['flexform'] as $key => $value) {
+                if (isset($this->settings[$key]) && $value != '') {
+                    $this->settings[$key] = $value;
+                }
+             }
+         }
+        */
+    }
+
+    //public function initializeAction() { $this->initializeSettings(); }
 
 
 }
+
 ?>
