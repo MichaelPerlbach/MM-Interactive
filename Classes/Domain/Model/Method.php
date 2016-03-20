@@ -27,9 +27,9 @@ namespace MikelMade\Mminteractive\Domain\Model;
  ***************************************************************/
 
 /**
- * Event
+ * Method
  */
-class Event extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Method extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**

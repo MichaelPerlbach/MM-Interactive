@@ -65,7 +65,20 @@ if (TYPO3_MODE === 'BE') {
             'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/map.png',
             'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_map.xlf',
         ));
-
+    /**
+     * Registers a Backend Module
+     */
+    \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule('MikelMade.' . $_EXTKEY, 'mminteractive',
+        // Make module a submodule of 'mminteractive'
+        'edit',  // Submodule key
+        '2',            // Position
+        array(
+            'Map' => 'edit, addEvent, addAreaPoint',
+        ), array(
+            'access' => 'user,group',
+            'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/map.png',
+            'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_map_edit.xlf',
+        ));
 }
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript',

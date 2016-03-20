@@ -2,6 +2,7 @@
 # Table structure for table 'tx_mminteractive_domain_model_event'
 #
 DROP TABLE IF EXISTS tx_mminteractive_domain_model_event;
+
 CREATE TABLE tx_mminteractive_domain_model_event (
   uid int(11) unsigned NOT NULL auto_increment,
   pid int(11) unsigned NOT NULL default '0',

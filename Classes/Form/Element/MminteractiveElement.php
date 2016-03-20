@@ -46,14 +46,22 @@ class MminteractiveElement extends AbstractFormElement
         $config = ArrayUtility::arrayMergeRecursiveOverrule($this->defaultConfig,
             $parameterArray['fieldConf']['config']);
 
-        $file = $this->getFile($row, $config['file_field']);
-        if (!$file) {
-            return $resultArray;
-        }
-
         $content = '';
         $content .= '<div class="media">';
-        $content .= $this->getButton($file, $config);
+        $inputField = '<input type="hidden" '
+            . 'name="' . $parameterArray['itemFormElName'] . '" '
+            . 'value="' . htmlspecialchars($parameterArray['itemFormElValue']) . '" />';
+
+        $content .= $inputField;
+        if($this->data['command'] == "new"){
+            $content .= "<p>Please save before editing!</p>";
+        }else{
+            $file = $this->getFile($row, $config['file_field']);
+            if (!$file) {
+                return $resultArray;
+            }
+            $content .= $this->getButton($file, $config, htmlspecialchars($parameterArray['itemFormElValue']));
+        }
         $content .= $this->getInfoTable();
 
         $content .= '</div>';
@@ -96,20 +104,24 @@ class MminteractiveElement extends AbstractFormElement
      * @param array $config
      * @return string
      */
-    private function getButton($file, $config)
+    private function getButton($file, $config, $mapUid)
     {
         $languageService = $this->getLanguageService();
 
         /** @var UriBuilder $routingUriBuilder */
         $routingUriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Backend\Routing\UriBuilder');
-        $backendLink = $routingUriBuilder->buildUriFromModule('mminteractive_MminteractiveMod1', array());
+        $prefix = "tx_mminteractive_mminteractive_mminteractiveedit";
+        $params = array($prefix.'[file]' => $file->getUid(),$prefix.'[sysfilereference]'=>$this->data['vanillaUid'],$prefix.'[action]' => 'edit',$prefix.'[controller]' => 'Map');
+        if($mapUid){
+            $map = [$prefix.'[map]' => $mapUid];
+            array_push($params, $map);
+        }
+        $backendLink = $routingUriBuilder->buildUriFromModule('mminteractive_MminteractiveEdit', $params);
 //        $buttonAttributes = array(
 //            'data-url' => $backendLink,
-//            'data-severity' => 'notice',
 //            'data-image-name' => $file->getNameWithoutExtension(),
 //            'data-image-uid' => $file->getUid(),
-//            'data-file-field' => $config['file_field'],
-//            'data-field' => $formFieldId,
+////            'data-file-field' => $config['file_field']
 //        );
 
         $button = '<button class="btn btn-default">';
