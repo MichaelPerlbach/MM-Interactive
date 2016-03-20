@@ -53,9 +53,9 @@ class MminteractiveElement extends AbstractFormElement
             . 'value="' . htmlspecialchars($parameterArray['itemFormElValue']) . '" />';
 
         $content .= $inputField;
-        if($this->data['command'] == "new"){
+        if ($this->data['command'] == "new") {
             $content .= "<p>Please save before editing!</p>";
-        }else{
+        } else {
             $file = $this->getFile($row, $config['file_field']);
             if (!$file) {
                 return $resultArray;
@@ -111,25 +111,22 @@ class MminteractiveElement extends AbstractFormElement
         /** @var UriBuilder $routingUriBuilder */
         $routingUriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Backend\Routing\UriBuilder');
         $prefix = "tx_mminteractive_mminteractive_mminteractiveedit";
-        $params = array($prefix.'[file]' => $file->getUid(),$prefix.'[sysfilereference]'=>$this->data['vanillaUid'],$prefix.'[action]' => 'edit',$prefix.'[controller]' => 'Map');
-        if($mapUid){
-            $map = [$prefix.'[map]' => $mapUid];
+        $params = array(
+            $prefix . '[file]' => $file->getUid(),
+            $prefix . '[sysfilereference]' => $this->data['vanillaUid'],
+            $prefix . '[action]' => 'edit',
+            $prefix . '[controller]' => 'Map'
+        );
+        if ($mapUid) {
+            $map = [$prefix . '[map]' => $mapUid];
             array_push($params, $map);
         }
         $backendLink = $routingUriBuilder->buildUriFromModule('mminteractive_MminteractiveEdit', $params);
-//        $buttonAttributes = array(
-//            'data-url' => $backendLink,
-//            'data-image-name' => $file->getNameWithoutExtension(),
-//            'data-image-uid' => $file->getUid(),
-////            'data-file-field' => $config['file_field']
-//        );
 
         $button = '<button class="btn btn-default">';
-//        foreach ($buttonAttributes as $key => $value) {
-//            $button .= ' ' . $key . '="' . htmlspecialchars($value) . '"';
-//        }
+
         $button .= /** @lang HTML */
-            '<a href="'.$backendLink.'" >';
+            '<a href="' . $backendLink . '" >';
         $button .= '<span class="t3-icon fa fa-picture-o"></span>';
         $button .= $languageService->sL('LLL:EXT:mminteractive/Resources/Private/Language/locallang.xlf:tx_mminteractive_mminteractive_element.buttontext',
             true);

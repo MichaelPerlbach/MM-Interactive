@@ -23,12 +23,9 @@ namespace MikelMade\Mminteractive\Controller;
  *
  *    This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-use MikelMade\Mminteractive\Domain\Model\FileReference;
 use MikelMade\Mminteractive\Domain\Model\Map;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Extbase\Property\TypeConverter\FileReferenceConverter;
-
 
 /**
  *
@@ -68,28 +65,30 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param \TYPO3\CMS\Extbase\Domain\Model\File $file
      * @param int $sysfilereference
      */
-    public function editAction(\MikelMade\Mminteractive\Domain\Model\Map $map = null, \TYPO3\CMS\Extbase\Domain\Model\File $file = null, $sysfilereference = null)
-    {
-
-//        $file = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('file') ? intval(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('file')) : 0;
-//        $ttcontent = \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('sys_file_reference') ? \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('sys_file_reference') : 0;
-        /** @var FileRepository $fileRepository */
-        $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
-
-        /** @var \TYPO3\CMS\Core\Resource\FileReference $sysfilereference */
-        $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
-        if(empty($map)){
+    public function editAction(
+        \MikelMade\Mminteractive\Domain\Model\Map $map = null,
+        \TYPO3\CMS\Extbase\Domain\Model\File $file = null,
+        $sysfilereference = null
+    ) {
+        if (empty($map) && $sysfilereference > 0 && !empty($file)) {
             /** @var Map $map */
             $map = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MikelMade\\Mminteractive\\Domain\\Model\\Map');
             $this->mapRepository->add($map);
             $persistenceManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
             $persistenceManager->persistAll();
-            $this->getDatabase()->exec_UPDATEquery('sys_file_reference','uid='.$sysfilereference->getUid(),array('mminteractive' =>$map->getUid()));
-            $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference->getUid());
+            /** @var FileRepository $fileRepository */
+            $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+            $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
+            $this->getDatabase()->exec_UPDATEquery('sys_file_reference', 'uid=' . $sysfilereference->getUid(),
+                array('mminteractive' => $map->getUid()));
+        } else {
+            /** @var FileRepository $fileRepository */
+            $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+            $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
         }
         $this->view->assign('file', $file);
         $this->view->assign('sysfilereference', $sysfilereference);
-        $this->view->assign('map',$map);
+        $this->view->assign('map', $map);
     }
 
     /**
@@ -99,7 +98,8 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param array $data
      * @return bool
      */
-    public function addEventAction(\MikelMade\Mminteractive\Domain\Model\Map $map = null, array $data = null){
+    public function addEventAction(\MikelMade\Mminteractive\Domain\Model\Map $map = null, array $data = null)
+    {
         $this->addFlashMessage(__FUNCTION__, 'test');
         $this->redirect('edit');
         return true;
@@ -112,8 +112,9 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param array $data
      * @return bool
      */
-    public function addAreaPointAction(\MikelMade\Mminteractive\Domain\Model\Area $area = null, array $data = null){
-        $this->addFlashMessage(__FUNCTION__,'test');
+    public function addAreaPointAction(\MikelMade\Mminteractive\Domain\Model\Area $area = null, array $data = null)
+    {
+        $this->addFlashMessage(__FUNCTION__, 'test');
         $this->redirect('edit');
         return true;
     }
@@ -121,7 +122,8 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * @return DatabaseConnection
      */
-    protected function getDatabase(){
+    protected function getDatabase()
+    {
         return $GLOBALS['TYPO3_DB'];
     }
 }

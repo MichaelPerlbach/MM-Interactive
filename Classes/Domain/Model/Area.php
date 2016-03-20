@@ -1,30 +1,30 @@
 <?php
 namespace MikelMade\Mminteractive\Domain\Model;
 
-/***************************************************************
- *
- *  Copyright notice
- *
- *  (c) 2016
- *
- *  All rights reserved
- *
- *  This script is part of the TYPO3 project. The TYPO3 project is
- *  free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  The GNU General Public License can be found at
- *  http://www.gnu.org/copyleft/gpl.html.
- *
- *  This script is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  This copyright notice MUST APPEAR in all copies of the script!
- ***************************************************************/
+    /***************************************************************
+     *
+     *  Copyright notice
+     *
+     *  (c) 2016
+     *
+     *  All rights reserved
+     *
+     *  This script is part of the TYPO3 project. The TYPO3 project is
+     *  free software; you can redistribute it and/or modify
+     *  it under the terms of the GNU General Public License as published by
+     *  the Free Software Foundation; either version 3 of the License, or
+     *  (at your option) any later version.
+     *
+     *  The GNU General Public License can be found at
+     *  http://www.gnu.org/copyleft/gpl.html.
+     *
+     *  This script is distributed in the hope that it will be useful,
+     *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+     *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+     *  GNU General Public License for more details.
+     *
+     *  This copyright notice MUST APPEAR in all copies of the script!
+     ***************************************************************/
 
 /**
  * Area
@@ -38,21 +38,21 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $title = '';
-    
+
     /**
      * url
      *
      * @var string
      */
     protected $url = '';
-    
+
     /**
      * params
      *
      * @var string
      */
     protected $params = '';
-    
+
     /**
      * alt
      *
@@ -186,7 +186,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $borderwidth;
-    
+
     /**
      * areapoints
      *
@@ -194,7 +194,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @cascade remove
      */
     protected $areapoints = null;
-    
+
     /**
      * event
      *
@@ -202,14 +202,14 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @cascade remove
      */
     protected $event = null;
-    
+
     /**
      * method
      *
      * @var \MikelMade\Mminteractive\Domain\Model\Method
      */
     protected $method = null;
-    
+
     /**
      * __construct
      */
@@ -218,7 +218,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         //Do not remove the next line: It would break the functionality
         $this->initStorageObjects();
     }
-    
+
     /**
      * Initializes all ObjectStorage properties
      * Do not modify this method!
@@ -232,7 +232,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->areapoints = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $this->event = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
-    
+
     /**
      * Returns the title
      *
@@ -242,7 +242,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->title;
     }
-    
+
     /**
      * Sets the title
      *
@@ -253,7 +253,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->title = $title;
     }
-    
+
     /**
      * Returns the url
      *
@@ -263,7 +263,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->url;
     }
-    
+
     /**
      * Sets the url
      *
@@ -274,7 +274,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->url = $url;
     }
-    
+
     /**
      * Returns the params
      *
@@ -284,7 +284,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->params;
     }
-    
+
     /**
      * Sets the params
      *
@@ -295,7 +295,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->params = $params;
     }
-    
+
     /**
      * Returns the alt
      *
@@ -305,7 +305,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->alt;
     }
-    
+
     /**
      * Sets the alt
      *
@@ -652,7 +652,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->borderwidth = $borderwidth;
     }
-    
+
     /**
      * Adds a Areapoint
      *
@@ -663,7 +663,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->areapoints->attach($areapoint);
     }
-    
+
     /**
      * Removes a Areapoint
      *
@@ -674,7 +674,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->areapoints->detach($areapointToRemove);
     }
-    
+
     /**
      * Returns the areapoints
      *
@@ -684,7 +684,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->areapoints;
     }
-    
+
     /**
      * Sets the areapoints
      *
@@ -695,7 +695,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->areapoints = $areapoints;
     }
-    
+
     /**
      * Adds a Event
      *
@@ -706,7 +706,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->event->attach($event);
     }
-    
+
     /**
      * Removes a Event
      *
@@ -717,7 +717,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->event->detach($eventToRemove);
     }
-    
+
     /**
      * Returns the event
      *
@@ -727,7 +727,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->event;
     }
-    
+
     /**
      * Sets the event
      *
@@ -738,7 +738,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->event = $event;
     }
-    
+
     /**
      * Returns the method
      *
@@ -748,7 +748,7 @@ class Area extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->method;
     }
-    
+
     /**
      * Sets the method
      *
