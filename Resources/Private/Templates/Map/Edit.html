@@ -4,9 +4,36 @@
     <f:layout name="Map"/>
 
     <f:section name="content">
-        <f:flashMessages />
+        <f:flashMessages/>
         {all->f:debug()}
-        <f:link.action action="addEvent" additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {map: map}}">add Event TEST</f:link.action>
-        <f:link.action action="addAreaPoint" additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {area: area}}">add Area Point TEST</f:link.action>
+        <!--<f:link.action action="addEvent" additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {map: map}}">add Event TEST</f:link.action>-->
+        <!--<f:link.action action="addAreaPoint" additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {area: area}}">add Area Point TEST</f:link.action>-->
+
+        <div class="mminteractive-container">
+            <div class="mminteractive-row">
+                <div class="navbar navbar-default ">
+                    <div class="navbar-form navbar-left">
+                        <p class="btn">Controlls</p>
+                    </div>
+                    <ul class="nav nav-pills navbar-form pull-right">
+                        <li>
+                            <!--TODO Dropdown Container-->
+                            <button type="button" class="btn" data-toggle="collapse" data-target="#mminteractive-displayed-image">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                        <li>
+                            <!--TODO move Container-->
+                            <button type="button" class="btn">
+                                <span class="fa fa-arrows" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mminteractive-image panel panel-default center-block collapse" id="mminteractive-displayed-image">
+                    <!--TODO render image-->
+                </div>
+            </div>
+        </div>
     </f:section>
 </div>
