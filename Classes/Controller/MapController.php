@@ -81,10 +81,12 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
             $this->getDatabase()->exec_UPDATEquery('sys_file_reference', 'uid=' . $sysfilereference->getUid(),
                 array('mminteractive' => $map->getUid()));
-        } else if($sysfilereference > 0 ){
-            /** @var FileRepository $fileRepository */
-            $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
-            $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
+        } else {
+            if ($sysfilereference > 0) {
+                /** @var FileRepository $fileRepository */
+                $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+                $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
+            }
         }
         $this->view->assign('file', $file);
         $this->view->assign('sysfilereference', $sysfilereference);

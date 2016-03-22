@@ -3,14 +3,8 @@ if (!defined('TYPO3_MODE')) {
     die ('Access denied.');
 }
 
-// TCA
-$TCA['tx_mminteractive_domain_model_produkte'] = array(
-    'ctrl' => array(
-        'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tca.php'
-    )
-);
-
-include_once(\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Classes/Utility/FlexFormHelper.php');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript',
+    'mminteractive');
 
 $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $pluginSignature = strtolower($extensionName) . '_pi1';
@@ -37,7 +31,6 @@ if (TYPO3_MODE === 'BE') {
         }
         $TBE_MODULES = $temp_TBE_MODULES;
     }
-    // \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addModule($moduleName, '', '', \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/BackendModule/');
 
     // Hauptmodul erstellen
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule('MikelMade.' . $_EXTKEY,            # Extension-Key
@@ -80,9 +73,6 @@ if (TYPO3_MODE === 'BE') {
             'labels' => 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang_map_edit.xlf',
         ));
 }
-
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript',
-    'mminteractive');
 
 
 ?>
