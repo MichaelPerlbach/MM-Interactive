@@ -66,7 +66,7 @@ if (TYPO3_MODE === 'BE') {
         'edit',  // Submodule key
         '2',            // Position
         array(
-            'Map' => 'edit, addEvent, addAreaPoint',
+            'Map' => 'edit, addEvent, addAreaPoint, addArea',
         ), array(
             'access' => 'user,group',
             'icon' => 'EXT:' . $_EXTKEY . '/Resources/Public/Icons/map.png',

@@ -75,24 +75,33 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $this->view->assign('status','nothing to do');
         }
         if (empty($map) && $sysfilereference > 0) {
-            /** @var Map $map */
-            $map = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MikelMade\\Mminteractive\\Domain\\Model\\Map');
-            $this->mapRepository->add($map);
+            $mminteractiveId = $this->checkForReference($sysfilereference);
+            if($mminteractiveId > 0){
+                $map = $this->mapRepository->findByUid($mminteractiveId);
+            }else{
+                /** @var Map $map */
+                $map = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MikelMade\\Mminteractive\\Domain\\Model\\Map');
+                $map->setImage($sysfilereference);
+                $this->mapRepository->add($map);
 
-            /** @var PersistenceManager $persistenceManager */
-            $persistenceManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-            $persistenceManager->persistAll();
-            /** @var FileRepository $fileRepository */
-            $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+                /** @var PersistenceManager $persistenceManager */
+                $persistenceManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                $persistenceManager->persistAll();
 
-            $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
-            $map->setImage($sysfilereference->getUid());
-            $this->mapRepository->update($map);
-            $persistenceManager->persistAll();
-            $this->getDatabase()->exec_UPDATEquery('sys_file_reference', 'uid=' . $sysfilereference->getUid(),
-                array('mminteractive' => $map->getUid()));
+                $this->getDatabase()->exec_UPDATEquery('sys_file_reference', 'uid=' . $sysfilereference,
+                    array('mminteractive' => $map->getUid()));
+            }
         }
         $this->view->assign('map', $map);
+    }
+
+    /**
+     * @param \MikelMade\Mminteractive\Domain\Model\Map $map
+     * @param array $data
+     */
+    public function addAreaAction(\MikelMade\Mminteractive\Domain\Model\Map $map = null, array $data = null){
+        $this->addFlashMessage(__FUNCTION__, __CLASS__);
+        $this->redirect('edit');
     }
 
     /**
@@ -100,13 +109,11 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @param \MikelMade\Mminteractive\Domain\Model\Map $map
      * @param array $data
-     * @return bool
      */
     public function addEventAction(\MikelMade\Mminteractive\Domain\Model\Map $map = null, array $data = null)
     {
-        $this->addFlashMessage(__FUNCTION__, 'test');
+        $this->addFlashMessage(__FUNCTION__, __CLASS__);
         $this->redirect('edit');
-        return true;
     }
 
     /**
@@ -114,13 +121,11 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      *
      * @param \MikelMade\Mminteractive\Domain\Model\Area $area
      * @param array $data
-     * @return bool
      */
     public function addAreaPointAction(\MikelMade\Mminteractive\Domain\Model\Area $area = null, array $data = null)
     {
-        $this->addFlashMessage(__FUNCTION__, 'test');
+        $this->addFlashMessage(__FUNCTION__, __CLASS__);
         $this->redirect('edit');
-        return true;
     }
 
     /**
@@ -129,6 +134,23 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     protected function getDatabase()
     {
         return $GLOBALS['TYPO3_DB'];
+    }
+
+    /**
+     * @param int $id
+     * @return int
+     */
+    private function checkForReference($id)
+    {
+        /** @var FileRepository $fileRepository */
+        $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+        $sysfilereference = $fileRepository->findFileReferenceByUid($id);
+        if($sysfilereference->hasProperty('mminteractive')){
+            if($sysfilereference->getProperty('mminteractive') > 0){
+                return $sysfilereference->getProperty('mminteractive');
+            }
+        }
+        return 0;
     }
 }
 
