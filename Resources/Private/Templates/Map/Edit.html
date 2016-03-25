@@ -6,9 +6,6 @@
     <f:section name="content">
         <f:flashMessages/>
         {all->f:debug()}
-        <!--<f:link.action action="addEvent" additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {map: map}}">add Event TEST</f:link.action>-->
-        <!--<f:link.action action="addAreaPoint" additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {area: area}}">add Area Point TEST</f:link.action>-->
-
         <div class="mminteractive-container">
             <div class="mminteractive-row">
                 <div class="navbar navbar-default ">
@@ -30,8 +27,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="mminteractive-image panel panel-default center-block collapse" id="mminteractive-displayed-image">
+                <div class="mminteractive-image panel panel-default center-block collapse in" id="mminteractive-displayed-image">
                     <!--TODO render image-->
+                    <f:image src="{map.image}" treatIdAsReference="true" class="center-block"/>
                 </div>
             </div>
         </div>

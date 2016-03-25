@@ -26,7 +26,7 @@ return array(
         'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, areas',
     ),
     'types' => array(
-        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, areas, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
+        '1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, areas,image, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access, starttime, endtime'),
     ),
     'palettes' => array(
         '1' => array('showitem' => ''),
@@ -134,6 +134,10 @@ return array(
             ),
 
         ),
-
+        'image' => array(
+            'config' => array(
+                'type' => 'passthrough',
+            ),
+        ),
     ),
 );

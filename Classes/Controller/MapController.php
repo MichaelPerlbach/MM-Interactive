@@ -25,7 +25,9 @@ namespace MikelMade\Mminteractive\Controller;
  ***************************************************************/
 use MikelMade\Mminteractive\Domain\Model\Map;
 use TYPO3\CMS\Core\Database\DatabaseConnection;
+use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Resource\FileRepository;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
 /**
  *
@@ -56,40 +58,40 @@ class MapController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function listAction()
     {
+        
     }
 
     /**
      * action edit
      *
      * @param \MikelMade\Mminteractive\Domain\Model\Map $map
-     * @param \TYPO3\CMS\Extbase\Domain\Model\File $file
      * @param int $sysfilereference
      */
     public function editAction(
         \MikelMade\Mminteractive\Domain\Model\Map $map = null,
-        \TYPO3\CMS\Extbase\Domain\Model\File $file = null,
         $sysfilereference = null
     ) {
-        if (empty($map) && $sysfilereference > 0 && !empty($file)) {
+        if(empty($map) && empty($sysfilereference)){
+            $this->view->assign('status','nothing to do');
+        }
+        if (empty($map) && $sysfilereference > 0) {
             /** @var Map $map */
             $map = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('MikelMade\\Mminteractive\\Domain\\Model\\Map');
             $this->mapRepository->add($map);
+
+            /** @var PersistenceManager $persistenceManager */
             $persistenceManager = $this->objectManager->get('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
             $persistenceManager->persistAll();
             /** @var FileRepository $fileRepository */
             $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
+
             $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
+            $map->setImage($sysfilereference->getUid());
+            $this->mapRepository->update($map);
+            $persistenceManager->persistAll();
             $this->getDatabase()->exec_UPDATEquery('sys_file_reference', 'uid=' . $sysfilereference->getUid(),
                 array('mminteractive' => $map->getUid()));
-        } else {
-            if ($sysfilereference > 0) {
-                /** @var FileRepository $fileRepository */
-                $fileRepository = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Resource\\FileRepository');
-                $sysfilereference = $fileRepository->findFileReferenceByUid($sysfilereference);
-            }
         }
-        $this->view->assign('file', $file);
-        $this->view->assign('sysfilereference', $sysfilereference);
         $this->view->assign('map', $map);
     }
 

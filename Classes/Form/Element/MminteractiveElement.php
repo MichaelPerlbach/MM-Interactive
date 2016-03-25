@@ -60,7 +60,7 @@ class MminteractiveElement extends AbstractFormElement
             if (!$file) {
                 return $resultArray;
             }
-            $content .= $this->getButton($file, $config, htmlspecialchars($parameterArray['itemFormElValue']));
+            $content .= $this->getButton(htmlspecialchars($parameterArray['itemFormElValue']));
         }
         $content .= $this->getInfoTable();
 
@@ -100,11 +100,9 @@ class MminteractiveElement extends AbstractFormElement
     }
 
     /**
-     * @param \TYPO3\CMS\Core\Resource\File $file
-     * @param array $config
      * @return string
      */
-    private function getButton($file, $config, $mapUid)
+    private function getButton($mapUid)
     {
         $languageService = $this->getLanguageService();
 
@@ -112,7 +110,6 @@ class MminteractiveElement extends AbstractFormElement
         $routingUriBuilder = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\CMS\Backend\Routing\UriBuilder');
         $prefix = "tx_mminteractive_mminteractive_mminteractiveedit";
         $params = array(
-            $prefix . '[file]' => $file->getUid(),
             $prefix . '[sysfilereference]' => $this->data['vanillaUid'],
             $prefix . '[action]' => 'edit',
             $prefix . '[controller]' => 'Map'

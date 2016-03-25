@@ -27,7 +27,8 @@ namespace MikelMade\Mminteractive\Domain\Model;
      ***************************************************************/
 
 /**
- * Map
+ * Class Map
+ * @package MikelMade\Mminteractive\Domain\Model
  */
 class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
@@ -39,6 +40,11 @@ class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @cascade remove
      */
     protected $areas = null;
+
+    /**
+     * @var int
+     */
+    protected $image = null;
 
     /**
      * __construct
@@ -60,6 +66,22 @@ class Map extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected function initStorageObjects()
     {
         $this->areas = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+    }
+
+    /**
+     * @return int
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param int $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
     }
 
     /**

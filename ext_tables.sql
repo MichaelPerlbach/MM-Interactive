@@ -11,6 +11,7 @@ CREATE TABLE tx_mminteractive_domain_model_map (
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	areas int(11) unsigned DEFAULT '0' NOT NULL,
+	image int(11) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,
