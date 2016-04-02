@@ -1,0 +1,21 @@
+config.tx_extbase {
+    persistence {
+        # Enable this if you need the reference index to be updated
+        # updateReferenceIndex = 1
+        TYPO3\CMS\Extbase\Domain\Model\FileReference {
+            subclasses {
+                Tx_Mminteractive_FileReference = MikelMade\Mminteractive\Domain\Model\FileReference
+            }
+        }
+        classes {
+            MikelMade\Mminteractive\Domain\Model\FileReference {
+                mapping {
+                    tableName = sys_file_reference
+                }
+            }
+        }
+    }
+    objects {
+        TYPO3\CMS\Extbase\Domain\Model\FileReference.className = MikelMade\Mminteractive\Domain\Model\FileReference
+    }
+}

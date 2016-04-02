@@ -6,6 +6,12 @@
 			<trans-unit id="tx_mminteractive.step1">
 				<source>1. file-upload</source>
 			</trans-unit>
+			<trans-unit id="tx_mminteractive_sys_file_reference.mminteractive">
+        <source>MM Interactive</source>
+      </trans-unit>
+			<trans-unit id="tx_mminteractive_mminteractive_element.buttontext">
+				<source>Open Editor</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

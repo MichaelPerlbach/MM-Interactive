@@ -27,65 +27,37 @@ namespace MikelMade\Mminteractive\Domain\Model;
      ***************************************************************/
 
 /**
- * Areapoint
+ * Method
  */
-class Areapoint extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Method extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
     /**
-     * x
+     * title
      *
-     * @var int
+     * @var string
      */
-    protected $x = 0;
+    protected $title = '';
 
     /**
-     * y
+     * Returns the title
      *
-     * @var int
+     * @return string $title
      */
-    protected $y = 0;
-
-    /**
-     * Returns the x
-     *
-     * @return int $x
-     */
-    public function getX()
+    public function getTitle()
     {
-        return $this->x;
+        return $this->title;
     }
 
     /**
-     * Sets the x
+     * Sets the title
      *
-     * @param int $x
+     * @param string $title
      * @return void
      */
-    public function setX($x)
+    public function setTitle($title)
     {
-        $this->x = $x;
-    }
-
-    /**
-     * Returns the y
-     *
-     * @return int $y
-     */
-    public function getY()
-    {
-        return $this->y;
-    }
-
-    /**
-     * Sets the y
-     *
-     * @param int $y
-     * @return void
-     */
-    public function setY($y)
-    {
-        $this->y = $y;
+        $this->title = $title;
     }
 
 }

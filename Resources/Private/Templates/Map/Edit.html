@@ -1,0 +1,40 @@
+{namespace common=MikelMade\Mminteractive\ViewHelpers}
+<!--additionalParams="{tx_mminteractive_mminteractive_mminteractiveedit: {test: 'HALLO'}}"-->
+<div xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
+    <f:layout name="Map"/>
+
+    <f:section name="content">
+        <f:flashMessages/>
+        {all->f:debug()}
+        <f:link.action action="addArea" arguments="{map: map}">Test Add Area</f:link.action>
+        <f:link.action action="addAreaPoint" >Test Add AreaPoint</f:link.action>
+        <f:link.action action="addEvent" arguments="{map: map}">Test Add Event</f:link.action>
+        <div class="mminteractive-container">
+            <div class="mminteractive-row">
+                <div class="navbar navbar-default ">
+                    <div class="navbar-form navbar-left">
+                        <p class="btn">Controlls</p>
+                    </div>
+                    <ul class="nav nav-pills navbar-form pull-right">
+                        <li>
+                            <!--TODO Dropdown Container-->
+                            <button type="button" class="btn" data-toggle="collapse" data-target="#mminteractive-displayed-image">
+                                <span class="fa fa-chevron-down" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                        <li>
+                            <!--TODO move Container-->
+                            <button type="button" class="btn">
+                                <span class="fa fa-arrows" aria-hidden="true"></span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mminteractive-image panel panel-default center-block collapse in" id="mminteractive-displayed-image">
+                    <!--TODO render image-->
+                    <f:image src="{map.image}" treatIdAsReference="true" class="center-block"/>
+                </div>
+            </div>
+        </div>
+    </f:section>
+</div>

@@ -1,14 +1,27 @@
-{namespace v=Tx_Mminteractive_ViewHelpers_Be_Map} 
-<extlist:comment>
-<!--  
-Default Layout
+{namespace v=MikelMade\Mminteractive\ViewHelpers}
+<div xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers">
 
-@package Mminteractive
-@author Michael Perlbach <info@mikelmade.de>
--->
-</extlist:comment>
-<v:Resource />
 
-<div>
-  <f:render section="content" />
+    <extlist:comment>
+        <!--
+        Default Layout
+
+        @package Mminteractive
+        @author Michael Perlbach <info@mikelmade.de>
+        -->
+    </extlist:comment>
+    <v:be.map.resource/>
+
+    <f:be.container loadExtJs="0">
+        <div class="typo3-fullDoc">
+            <div id="typo3-docbody">
+                <div id="typo3-inner-docbody">
+                    <f:flashMessages class="tx-extbase-flash-message"/>
+                    <div id="content">
+                        <f:render section="content"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </f:be.container>
 </div>
